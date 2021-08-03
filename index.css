@@ -1,7 +1,12 @@
 body
 {
     background-image:url(/img/Fondo.jpg) !important;
- 
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+    margin: 0;
+    min-height: 100vh;
 }
 
 .fondoOpaco
