@@ -1,12 +1,13 @@
-.fondoBack
+body
 {
-    background-image:url(/img/Fondo.jpg);
+    /*background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(109,109,156,1) 43%, rgba(53,116,129,1) 100%);
+    */
+    background-image: url(/img/Fondo.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
     background-size:cover;
-    margin: 0;
-    min-height: 100vh;
 }
 
 .fondoOpaco
@@ -27,18 +28,22 @@
     text-align: center;
     color:whitesmoke;
     background: transparent;
-}
-
-.contenedor
-{
-    display: flex;
-    justify-content: center;
-    border-style: 3%, solid, black;
-   
+    border: none;
+    word-break:break-all;
+    display:table;
+    display:inline-block;
+    position:absolute;
+    
 }
 .mapa
 {
     width: 50vw; 
     height: 30vh;
+    justify-content: center;
     
+}
+
+.fuente
+{
+    color: beige;
 }
