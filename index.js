@@ -42,9 +42,10 @@ function success(position) {
             console.log(data.main.humidity)
             console.log(data.weather[0].icon)
             //icono.setAttribute("src", "http://openweathermap.org/img/wn/" +data.weather[0].icon+".png")
-            uno.innerHTML +="<p class= 'col-sm-6 col-md-6 col-lg-6 col-xl-6 '><img class='fondoIcono' src='http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png'/></p>";
-            uno.innerHTML +="<p class= 'col-sm-2 col-md-6 col-lg-6 col-xl-6 '>Temperatura actual: " + Math.round(data.main.temp) + " °C</p>";
-            uno.innerHTML +="<p class= 'col-sm-4 col-md-6 fuente' > Humedad:  " + data.main.humidity + " %</p>";
+            uno.innerHTML +="<p class= 'col-sm-6 col-md-6 col-lg-6 col-xl-6 fuente'><img class='fondoIcono' src='http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png'/>" + data.weather[0].description+ " </p>";
+            uno.innerHTML +="<p class= 'col-sm-2 col-md-6 col-lg-6 col-xl-6 fuente'>Temperatura actual: " + Math.round(data.main.temp) + " °C</p>";
+
+            //uno.innerHTML +="<p class= 'col-sm-4 col-md-6 fuente' > Humedad:  " + data.main.humidity + " %</p>";
             //dos.innerHTML="<p class= 'col-sm-6 col-md-6 fuente' > Humedad:  " + data.main.humidity + " %</p>";
            
             
