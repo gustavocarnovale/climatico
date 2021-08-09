@@ -14,6 +14,8 @@ let latitud = 0;
 let longitud = 0;
 let ciudad = "";
 
+alert("Por favor activá la localzacion del dispositivo o navegador")
+
 navigator.geolocation.getCurrentPosition(success, error, options);
 
 function success(position) {
