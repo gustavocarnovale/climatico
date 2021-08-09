@@ -1,9 +1,8 @@
-const icono = document.querySelector("#icono")
-const infoCiudad = document.querySelector("#ciudad")
-const temperatura = document.querySelector("#temperatura")
-const descripcion = document.querySelector("#descripcion")
 const uno = document.querySelector(".uno")
 const dos = document.querySelector(".dos")
+const titulo = document.querySelector(".titulo")
+const titulo2 = document.querySelector(".titulo2")
+const mapa = document.querySelector(".mapa")
 
 
 
@@ -34,22 +33,19 @@ function success(position) {
     fetch(urlCl)
       .then((response) => response.json())
       .then((data) => {
-            console.log(data)
+            console.log("Gracias por utlizar Climatico!")
             console.log()           
-            console.log(data.main.temp_max)
-            console.log(data.main.temp_min)
+            console.log(data)
+            console.log(data.name)
             console.log(data.main.pressure)
             console.log(data.main.humidity)
             console.log(data.weather[0].icon)
-            //icono.setAttribute("src", "http://openweathermap.org/img/wn/" +data.weather[0].icon+".png")
-            uno.innerHTML +="<div class='cenIcoDes'><p><img class='fondoIcono' src='http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png'/></p><p class= 'col-sm-6 col-md-6 col-lg-6 col-xl-6 fuente'>" + data.weather[0].description+ " </p></div>";
-            uno.innerHTML +="";
-            dos.innerHTML +="<p class= 'col-sm-6 col-md-6 col-lg-6 col-xl-6 fuente'>Temperatura actual: " + Math.round(data.main.temp) + " °C</p>";
-
-            //uno.innerHTML +="<p class= 'col-sm-4 col-md-6 fuente' > Humedad:  " + data.main.humidity + " %</p>";
-            //dos.innerHTML="<p class= 'col-sm-6 col-md-6 fuente' > Humedad:  " + data.main.humidity + " %</p>";
-           
-            
+            titulo.innerHTML +="<div class='col-sm-12 col-md-12 col-lg-12 col-xl-12 fuente'><p>Tu ubicacion actual: " + data.name + " - " + ciudad + "</p></div>";
+            titulo2.innerHTML +="<div class= 'col-sm-12 col-md-12 col-lg-12 col-xl-12 fuente'><p >Temperatura actual: " + Math.round(data.main.temp) + " °C</p></div>";
+            uno.innerHTML +="<div class='col-sm-6 col-md-6 col-lg-6 col-xl-6 fuente'><p>Minima de: " + Math.round(data.main.temp_min)+ "°C</p></div>";
+            uno.innerHTML +="<div class='col-sm-6 col-md-6 col-lg-6 col-xl-6 fuente'><p>Maxima de: " + Math.round(data.main.temp_max)+ "°C</p></div>";
+            dos.innerHTML +="<div  class='col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xl-6 fuente' ><p><img class='fondoIcono' src='http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png'/>" + data.weather[0].description+ " </p></div>";
+            dos.innerHTML +="<div class='col-sm-6 col-md-6 col-lg-6 col-xl-6 fuente'><p>Humedad: " + data.main.humidity + "%</p></div>";
           });
 
     
@@ -109,13 +105,3 @@ function success(position) {
 function error(error) {
   console.warn("ERROR(" + error.code + "): " + error.message);
 }
-
-//  const url = "https://ws.smn.gob.ar/map_items/forecast/1"
-//  const request = new XMLHttpRequest();
-//  request.open('GET', url)
-//  window.Request.json(url, (datos) =>
-//  {
-//    console.log(datos)
-//  })
-//console.log(JSON.stringify(data[0].name))
-
