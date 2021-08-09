@@ -49,8 +49,8 @@ function success(position) {
         "<div class='col col-sm-12 col-md-12 col-lg-12 col-xl-12 fuente'><p>" +
         data.weather[0].description +
         " </p></div>";
-      tituloDos.innerHTML +=
-        "<div class= 'col-sm-12 col-md-12 col-lg-12 col-xl-12 fuente'><p >Temperatura actual: " +
+      uno.innerHTML +=
+        "<div class= 'col col-sm-3 col-md-3 col-lg-3 col-xl-3 fuente'><p >Temperatura actual: " +
         Math.round(data.main.temp) +
         " °C</p></div>";
       uno.innerHTML +=
