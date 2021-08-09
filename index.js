@@ -1,8 +1,8 @@
 const uno = document.querySelector(".uno")
 const dos = document.querySelector(".dos")
 const titulo = document.querySelector(".titulo")
-const titulo2 = document.querySelector(".titulo2")
-const mapa = document.querySelector(".mapa")
+const tituloDos = document.querySelector(".tituloDos")
+const tituloTres = document.querySelector(".tituloTres")
 
 
 
@@ -41,11 +41,12 @@ function success(position) {
             console.log(data.main.humidity)
             console.log(data.weather[0].icon)
             titulo.innerHTML +="<div class='col-sm-12 col-md-12 col-lg-12 col-xl-12 fuente'><p>Tu ubicacion actual: " + data.name + " - " + ciudad + "</p></div>";
-            titulo2.innerHTML +="<div class= 'col-sm-12 col-md-12 col-lg-12 col-xl-12 fuente'><p >Temperatura actual: " + Math.round(data.main.temp) + " °C</p></div>";
-            uno.innerHTML +="<div class='col-sm-6 col-md-6 col-lg-6 col-xl-6 fuente'><p>Minima de: " + Math.round(data.main.temp_min)+ "°C</p></div>";
-            uno.innerHTML +="<div class='col-sm-6 col-md-6 col-lg-6 col-xl-6 fuente'><p>Maxima de: " + Math.round(data.main.temp_max)+ "°C</p></div>";
-            dos.innerHTML +="<div  class='col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xl-6 fuente' ><p><img class='fondoIcono' src='http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png'/>" + data.weather[0].description+ " </p></div>";
-            dos.innerHTML +="<div class='col-sm-6 col-md-6 col-lg-6 col-xl-6 fuente'><p>Humedad: " + data.main.humidity + "%</p></div>";
+            tituloDos.innerHTML +="<div class= 'col-sm-12 col-md-12 col-lg-12 col-xl-12 fuente'><p >Temperatura actual: " + Math.round(data.main.temp) + " °C</p></div>";
+            tituloTres.innerHTML +="<div class='col col-sm-12 col-md-12 col-lg-12 col-xl-12 fuente'><img class='fondoIcono' src='http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png'/></div>";
+            tituloTres.innerHTML +="<div class='col col-sm-12 col-md-12 col-lg-12 col-xl-12 fuente'><p>" + data.weather[0].description+ " </p></div>";
+            uno.innerHTML +="<div class='col col-sm-3 col-md-3 col-lg-3 col-xl-3 fuente'><p>Maxima de: " + Math.round(data.main.temp_max)+ "°C</p></div>";
+            uno.innerHTML +="<div class='col col-sm-3 col-md-3 col-lg-3 col-xl-3 fuente'><p>Minima de: " + Math.round(data.main.temp_min)+ "°C</p></div>";
+            uno.innerHTML +="<div class='col col-sm-3 col-md-3 col-lg-3 col-xl-3 fuente'><p>Humedad: " + data.main.humidity + "%</p></div>";
           });
 
     
