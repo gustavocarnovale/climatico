@@ -35,6 +35,7 @@ function success(position) {
     .then((response) => response.json())
     .then((data) => {
       console.log("Gracias por utlizar Climatico!");
+      const descripcion = data.weather[0].description;
       titulo.innerHTML +=
         "<div class='col-sm-12 col-md-12 col-lg-12 col-xl-12 fuente'><p>Tu ubicacion actual: " +
         data.name +
@@ -47,7 +48,7 @@ function success(position) {
         ".png'/></div>";
       tituloTres.innerHTML +=
         "<div class='col col-sm-12 col-md-12 col-lg-12 col-xl-12 fuente'><p>" +
-        data.weather[0].description +
+        descripcion.toUpperCase() +
         " </p></div>";
       uno.innerHTML +=
         "<div class= 'col col-sm-3 col-md-3 col-lg-3 col-xl-3 fuente'><p >Temperatura actual: " +
