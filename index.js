@@ -54,11 +54,11 @@ function success(position) {
         Math.round(data.main.temp) +
         " °C</p></div>";
       uno.innerHTML +=
-        "<div class='col col-sm-3 col-md-3 col-lg-3 col-xl-3 fuente'><p>Maxima de: " +
+        "<div class='col col-sm-3 col-md-3 col-lg-3 col-xl-3 fuente'><p>Maxima: " +
         Math.round(data.main.temp_max) +
         "°C</p></div>";
       uno.innerHTML +=
-        "<div class='col col-sm-3 col-md-3 col-lg-3 col-xl-3 fuente'><p>Minima de: " +
+        "<div class='col col-sm-3 col-md-3 col-lg-3 col-xl-3 fuente'><p>Minima: " +
         Math.round(data.main.temp_min) +
         "°C</p></div>";
       uno.innerHTML +=
