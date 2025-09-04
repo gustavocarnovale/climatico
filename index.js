@@ -1,10 +1,8 @@
-const icono = document.querySelector("#icono")
-const infoCiudad = document.querySelector("#ciudad")
-const temperatura = document.querySelector("#temperatura")
-const descripcion = document.querySelector("#descripcion")
-
-
-
+const uno = document.querySelector(".uno");
+const dos = document.querySelector(".dos");
+const titulo = document.querySelector(".titulo");
+const tituloDos = document.querySelector(".tituloDos");
+const tituloTres = document.querySelector(".tituloTres");
 
 var options = {
   enableHighAccuracy: true,
@@ -16,84 +14,91 @@ let latitud = 0;
 let longitud = 0;
 let ciudad = "";
 
+alert("Por favor activá la localzacion del dispositivo o navegador")
+
 navigator.geolocation.getCurrentPosition(success, error, options);
 
 function success(position) {
   var coordenadas = position.coords;
-
   console.log("Tu posición actual es:");
   console.log("Latitud : " + coordenadas.latitude);
   console.log("Longitud: " + coordenadas.longitude);
   console.log("Más o menos " + coordenadas.accuracy + " metros.");
-     latitud = coordenadas.latitude;
-    longitud = coordenadas.longitude;
+  latitud = coordenadas.latitude;
+  longitud = coordenadas.longitude;
 
-    urlCl="https://api.openweathermap.org/data/2.5/weather?lat=" + latitud + "&lon=" + longitud + "&lang=es&appid=4452498fac43e15d8736c08eb4b37050&units=metric"
-    fetch(urlCl)
-      .then((response) => response.json())
-      .then((data) => {
-            console.log(data)
-            console.log()           
-            console.log(data.main.temp_max)
-            console.log(data.main.temp_min)
-            console.log(data.main.pressure)
-            console.log(data.main.humidity)
-            console.log(data.weather[0].icon)
-            descripcion.value = data.weather[0].description
-            temperatura.value = Math.round(data.main.temp) + " °C";
-            infoCiudad.value = data.name;
-            icono.setAttribute("src", "http://openweathermap.org/img/wn/" +data.weather[0].icon+".png")
-            
-          });
+  urlCl =
+    "https://api.openweathermap.org/data/2.5/weather?lat=" +
+    latitud +
+    "&lon=" +
+    longitud +
+    "&lang=es&appid=4452498fac43e15d8736c08eb4b37050&units=metric";
+  fetch(urlCl)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Gracias por utlizar Climatico!");
+      const descripcion = data.weather[0].description;
+      titulo.innerHTML +=
+        "<div class='col-sm-12 col-md-12 col-lg-12 col-xl-12 fuente'><p>Tu ubicacion actual: " +
+        data.name +
+        " - " +
+        ciudad +
+        "</p></div>";
+      tituloTres.innerHTML +=
+        "<div class='col col-sm-12 col-md-12 col-lg-12 col-xl-12 fuente'><img class='fondoIcono' src='http://openweathermap.org/img/wn/" +
+        data.weather[0].icon +
+        ".png'/></div>";
+      tituloTres.innerHTML +=
+        "<div class='col col-sm-12 col-md-12 col-lg-12 col-xl-12 fuente'><p>" +
+        descripcion.toUpperCase() +
+        " </p></div>";
+      uno.innerHTML +=
+        "<div class= 'col col-sm-3 col-md-3 col-lg-3 col-xl-3 fuente'><p >Temperatura actual: " +
+        Math.round(data.main.temp) +
+        " °C</p></div>";
+      uno.innerHTML +=
+        "<div class='col col-sm-3 col-md-3 col-lg-3 col-xl-3 fuente'><p>Maxima: " +
+        Math.round(data.main.temp_max) +
+        "°C</p></div>";
+      uno.innerHTML +=
+        "<div class='col col-sm-3 col-md-3 col-lg-3 col-xl-3 fuente'><p>Minima: " +
+        Math.round(data.main.temp_min) +
+        "°C</p></div>";
+      uno.innerHTML +=
+        "<div class='col col-sm-3 col-md-3 col-lg-3 col-xl-3 fuente'><p>Humedad: " +
+        data.main.humidity +
+        "%</p></div>";
+    });
 
-    
   var platform = new H.service.Platform({
     apikey: "Pxv2IuJ72cpY9D4AgsobbOpYUZMYLJ0x1IcQvsy0mis",
   });
 
-  // Obtain the default map types from the platform object:
   var defaultLayers = platform.createDefaultLayers();
 
-  // Instantiate (and display) a map object:
   var map = new H.Map(
     document.querySelector("#mapContainer"),
     defaultLayers.vector.normal.map,
     {
-      zoom: 12,
+      zoom: 15,
       center: { lat: coordenadas.latitude, lng: coordenadas.longitude },
     }
   );
-
   (coords = { lat: coordenadas.latitude, lng: coordenadas.longitude }),
     (marker = new H.map.Marker(coords));
 
-  // Add the marker to the map and center the map at the location of the marker:
   map.addObject(marker);
   map.setCenter(coords);
-
-  // Get an instance of the search service:
   var service = platform.getSearchService();
 
-  // Call the reverse geocode method with the geocoding parameters,
-  // the callback and an error callback function (called if a
-  // communication error occurs):
   service.reverseGeocode(
     {
       at: coordenadas.latitude + "," + coordenadas.longitude,
-    }, 
+    },
     (result) => {
       result.items.forEach((item) => {
-        // Assumption: ui is instantiated
-        // Create an InfoBubble at the returned location with
-        // the address as its contents:
-      //  ui.addBubble(
-      //    new H.ui.InfoBubble(item.position, {
-      //      content: item.address.label,
-      //    })
-      //  );
-
-        ciudad = item.address.state
-      console.log(ciudad)
+        ciudad = item.address.state;
+        console.log(ciudad);
       });
     },
     alert
@@ -103,13 +108,3 @@ function success(position) {
 function error(error) {
   console.warn("ERROR(" + error.code + "): " + error.message);
 }
-
-//  const url = "https://ws.smn.gob.ar/map_items/forecast/1"
-//  const request = new XMLHttpRequest();
-//  request.open('GET', url)
-//  window.Request.json(url, (datos) =>
-//  {
-//    console.log(datos)
-//  })
-//console.log(JSON.stringify(data[0].name))
-
